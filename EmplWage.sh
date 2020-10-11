@@ -1,14 +1,18 @@
 #!/bin/bash -x
 
 isFullTime=1
-randomCheck=$((RANDOM%2))
+isPartTime=2
+empRatePerHour=20
+randomCheck=$((RANDOM%3))
 if [ $randomCheck == $isFullTime ]
 then
-        empRatePerHour=20
         empHrs=8
-        salary=$(($empRatePerHour*$empHrs))
+elif [ $randomCheck == $isPartTime ]
+then
+        empHrs=4
 else
-        salary=0
+        empHrs=0
 fi
+        salary=$(($empRatePerHour*$empHrs))
 
 echo "Your one day salary is:" $salary
