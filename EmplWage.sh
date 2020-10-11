@@ -1,22 +1,30 @@
 #!/bin/bash -x
 
-isFullTime=1
-isPartTime=2
-empRatePerHour=20
+isFullTime=1;
+isPartTime=2;
+empRatePerHour=20;
+numOfWorkingDays=20;
+totalSalary=0;
 
-randomCheck=$((RANDOM%3))
+for ((day=1; day<=$numOfWorkingDays; day++))
+do
+	empCheck=$((RANDOM%3))
 
-case $randomCheck in
-        $isFullTime )
-                empHrs=8 ;;
-        $isPartTime )
-                empHrs=4 ;;
-        * )
-                empHrs=0 ;;
-esac
+	case $empCheck in 
+		$isFullTime)
+			empHrs=8
+			;;
+		$isPartTime)
+			empHrs=4
+			;;
+		*)
+			empHrs=0
+			;;
+	esac
 
-        salary=$(($empRatePerHour*$empHrs))
+done
 
-echo "Your one day salary is:" $salary
+salary=$(($empHrs*$empRatePerHour));
+totalSalary=$(($totalSalary+$salary))
 
-
+echo "Wages per month(20) : " $totalSalary
